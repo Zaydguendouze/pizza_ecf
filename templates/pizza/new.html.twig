@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Pizza{% endblock %}
+{% block title %}Nouvelle création de pizza{% endblock %}
 
 {% block body %}
-    <h1>Create new Pizza</h1>
+    <h1>Je crée ma super Pizza</h1>
 
     {{ include('pizza/_form.html.twig') }}
 
-    <a href="{{ path('pizza_index') }}">back to list</a>
+    <a class="mt-3 btn btn-primary btn-block" href="{{ path('pizza_index') }}">Retour à la liste des pizzas</a>
 {% endblock %}

@@ -1,32 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ingredient index{% endblock %}
+{% block title %}Liste des ingrédients{% endblock %}
 
 {% block body %}
-    <h1>Ingredient index</h1>
+    <h1>Liste des ingrédients</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Ingredient_name</th>
-                <th>Ingredient_price</th>
-                <th>Vegetarian</th>
+                <!--<th>Id</th>-->
+                <th>Nom de l'ingrédient</th>
+                <th>Prix de l'ingrédient</th>
+                <th>Végétarien</th>
                 <th>Vegan</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for ingredient in ingredients %}
             <tr>
-                <td>{{ ingredient.id }}</td>
+                <!--<td>{{ ingredient.id }}</td>-->
                 <td>{{ ingredient.ingredientName }}</td>
-                <td>{{ ingredient.ingredientPrice }}</td>
-                <td>{{ ingredient.vegetarian ? 'Yes' : 'No' }}</td>
-                <td>{{ ingredient.vegan ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('ingredient_show', {'id': ingredient.id}) }}">show</a>
-                    <a href="{{ path('ingredient_edit', {'id': ingredient.id}) }}">edit</a>
+                <td>{{ ingredient.ingredientPrice }} €</td>
+                <td>{{ ingredient.vegetarian ? 'Oui' : 'Non' }}</td>
+                <td>{{ ingredient.vegan ? 'Oui' : 'Non' }}</td>
+                <td class="flex">
+                    <div>
+                        <a class="btn btn-primary btn-block" href="{{ path('ingredient_show', {'id': ingredient.id}) }}">Voir</a>
+                    </div>
+                    <div>
+                        <a class="btn btn-success btn-block" href="{{ path('ingredient_edit', {'id': ingredient.id}) }}">Modifier</a>
+                    </div>
+                        {{ include('ingredient/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
@@ -37,5 +42,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('ingredient_new') }}">Create new</a>
+    <a class="mt-3 btn btn-primary btn-block" href="{{ path('ingredient_new') }}">Créer un nouvel ingrédient</a>
 {% endblock %}

@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Ingredient{% endblock %}
+{% block title %}Modification de l'ingrédient{% endblock %}
 
 {% block body %}
-    <h1>Edit Ingredient</h1>
+    <h1 class="md-3">Modifier un ingrédient</h1>
 
-    {{ include('ingredient/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ingredient/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('ingredient_index') }}">back to list</a>
+    <p class="mt-3">{{ include('ingredient/_delete_form.html.twig') }}</p>
 
-    {{ include('ingredient/_delete_form.html.twig') }}
+    <p class="mt-3">
+    <a class="btn btn-primary btn-block" href="{{ path('ingredient_index') }}">Retour à la liste des ingrédients</a>
+    </p>
+
+
 {% endblock %}

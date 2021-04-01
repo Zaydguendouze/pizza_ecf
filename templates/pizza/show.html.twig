@@ -8,19 +8,41 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ pizza.id }}</td>
+                <!--<th>Id</th>
+                <td>{{ pizza.id }}</td>-->
             </tr>
             <tr>
-                <th>Pizza_name</th>
+                <th>Nom de la pizza</th>
                 <td>{{ pizza.pizzaName }}</td>
+            </tr>
+            <tr>
+                <th>Ingrédients de la pizza</th>
+            </tr>
+
+            {% for ingredient in pizza.pizzaIngredients %}
+                <tr>
+                    <td>
+                        {{ ingredient.ingredientName }}
+                    </td>
+                    <td>
+                        {{ ingredient.ingredientPrice }} €
+                    </td>
+                </tr>
+            {% endfor %}
+
+            <th>Prix</th>
+                <td>{{ pizza.pizzaPrice }} €</td>
+            </tr>
+
+            <th>Taille</th>
+            <td>{{ pizza.pizzaSize.sizeName }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('pizza_index') }}">back to list</a>
+    <a class="mt-3 mb-3 btn btn-primary btn-block" href="{{ path('pizza_index') }}">Retour à la liste des pizzas</a>
 
-    <a href="{{ path('pizza_edit', {'id': pizza.id}) }}">edit</a>
+    <a class="mt-3 mb-3 btn btn-primary btn-block" href="{{ path('pizza_edit', {'id': pizza.id}) }}">Mettre à jour</a>
 
     {{ include('pizza/_delete_form.html.twig') }}
 {% endblock %}

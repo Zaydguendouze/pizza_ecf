@@ -17,18 +17,35 @@ class PizzaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pizza_name', TextType::class, ["label" => "Nom de la Pizza"])
+
+
+            ->add('pizza_name', TextType::class, ["label" => "Nom de la Pizza"
+                ,
+                "attr" => ["class" => "mt-3 mb-3"]
+            ])
             ->add('pizza_base', EntityType::class, [
+                "label" => "Base de la pizza",
+                "attr" => ["class" => "mt-3 mb-3"],
                 "class" => Base::class,
-                "choice_label" => "base_name"
+                "choice_label" => function ($base) {
+                    return $base->getBaseName() . " - " . $base->getBasePrice() ."€";
+                }
             ])
             ->add('pizza_size', EntityType::class, [
+                "attr" => ["class" => "mt-3 mb-3"],
+                "label" => "Taille de la pizza",
                 "class" => Size::class,
-                "choice_label" => "size_name"
+                "choice_label" => function ($size) {
+                    return $size->getSizeName() . " - " . $size->getSizePrice() ."€";
+                }
             ])
             ->add('pizza_ingredients', EntityType::class, [
+                "attr" => ["class" => "mt-3 mb-3"],
+                "label" => "Ingrédients de la pizza",
                 "class" => Ingredient::class,
-               "choice_label" => "ingredient_name",
+                "choice_label" => function ($ingredient) {
+                    return $ingredient->getIngredientName() . " - " . $ingredient->getIngredientPrice() ."€";
+                },
                 "expanded" => true,
                 "multiple" => true
             ])
